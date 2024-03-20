@@ -1,10 +1,10 @@
 import type { Store } from "~/types/stores";
 
-export const API_PAGE_SIZE = 20;
+export const API_PAGE_SIZE = 5;
 
 export const filterStores = (stores: Store[], searchTerm: string): Store[] => [
   ...stores.filter((store) =>
-    store.name.toLowerCase().includes(searchTerm.toLowerCase())
+    store.name.toLowerCase().includes('wrong')
   ),
 ];
 
