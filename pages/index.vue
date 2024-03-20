@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from "#ui/types"
 import type { ApiResponse } from "~/types/stores";
+import SearchForm from '~/components/SearchForm.vue';
 
 const query = useRoute().query
 
@@ -9,10 +10,6 @@ const SPACE_KEY = " "
 
 const page = ref(parseInt(query.p as string) || 1)
 const searchTerm = ref(query.q || "")
-
-const state = reactive({
-  inputSearchValue: ''
-})
 
 // TODO: How to handle this is null?
 const { data } = await useFetch<ApiResponse>('/api/stores', { query: { p: page, q: searchTerm } })
@@ -41,12 +38,7 @@ definePageMeta({
   <main>
     <h1 class="font-bold text-4xl mb-4">Jumbo stores</h1>
 
-    <UForm :state="state" @submit="handleFormSubmit" class="flex mb-6">
-      <UInput id="store-name" v-model="state.inputSearchValue" placeholder="Find your store" class="mr-2" />
-      <UButton type="submit">
-        Search
-      </UButton>
-    </UForm>
+    <SearchForm :handleFormSubmit="handleFormSubmit" />
 
     <section v-if="data?.stores.length > 0">
       <div class="grid md:grid-cols-[repeat(auto-fit,_minmax(25vw,_1fr))] gap-2 mb-6">
