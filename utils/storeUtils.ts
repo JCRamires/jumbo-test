@@ -1,7 +1,14 @@
 import { format, isWithinInterval, startOfTomorrow } from "date-fns";
 import type { Store } from "~/types/stores";
 
-type DayName = "sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday"
+type DayName =
+  | "sunday"
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday"
+  | "saturday";
 
 function getDayName(date: Date): DayName {
   switch (date.getDay()) {
