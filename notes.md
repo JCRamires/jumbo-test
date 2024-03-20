@@ -10,6 +10,7 @@ These are some notes with questions or remarks that I had while doing the test
 ## Github actions
 
 - The deployment is on vercel and it has zero configuration so theres no need to create anything, but I created an action that runs the tests when a new pull request is created.
+- [Link to pull request that breaks tests](https://github.com/JCRamires/jumbo-test/pull/2)
 
 ## pages/index.vue
 
