@@ -22,15 +22,17 @@ describe("apiUtils", () => {
 
   describe("paginateArray", () => {
     it("Should return the correct number of entries", () => {
-      const paginatedArray = paginateArray(jumboStores.stores as Store[], 1)
+      const paginatedArray = paginateArray(jumboStores.stores as Store[], 1);
 
-      expect(paginatedArray.length).toBe(20)
-    })
+      expect(paginatedArray.length).toBe(20);
+    });
     it("Should return the correct entries by page", () => {
-      const paginatedArray = paginateArray(jumboStores.stores as Store[], 2)
+      const paginatedArray = paginateArray(jumboStores.stores as Store[], 2);
 
-      expect(paginatedArray[0].name).toBe('Jumbo Veldhoven Citycentrum')
-      expect(paginatedArray[19].name).toBe('Jumbo Heeswijk Dinther St. Servatiusstraat')
-    })
-  })
+      expect(paginatedArray[0].name).toBe("Jumbo Veldhoven Citycentrum");
+      expect(paginatedArray[19].name).toBe(
+        "Jumbo Heeswijk Dinther St. Servatiusstraat"
+      );
+    });
+  });
 });
