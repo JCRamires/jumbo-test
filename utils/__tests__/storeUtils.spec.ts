@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { isStoreOpen } from "./storeUtils";
+import { isStoreOpen } from "../storeUtils";
 import type { Store } from "~/types/stores";
 
 const STORE: Store = {
