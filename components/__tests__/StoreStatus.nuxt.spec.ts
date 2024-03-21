@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { isStoreOpen } from "../storeUtils";
+import { mountSuspended } from "@nuxt/test-utils/runtime";
 import type { Store } from "~/types/stores";
+import StoreStatus from "../StoreStatus.vue";
 
 const STORE: Store = {
   storeId: "3126",
@@ -51,32 +52,34 @@ const STORE: Store = {
   },
 };
 
-describe("storeUtils", () => {
-  describe("isStoreOpen", () => {
-    beforeEach(() => {
-      vi.useFakeTimers();
+describe("StoreStatus", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("Store should be open", async () => {
+    const date = new Date(2024, 1, 1, 13);
+    vi.setSystemTime(date);
+
+    const component = await mountSuspended(StoreStatus, {
+      props: { store: STORE },
     });
 
-    afterEach(() => {
-      vi.useRealTimers();
+    expect(component.html()).toMatchInlineSnapshot(`"<p class="text-green-500 font-bold">Open</p>"`)
+  });
+
+  it("Store should be closed", async () => {
+    const date = new Date(2024, 1, 1, 6);
+    vi.setSystemTime(date);
+
+    const component = await mountSuspended(StoreStatus, {
+      props: { store: STORE },
     });
-    
-    it("Store should be open", () => {
-      const date = new Date(2024, 1, 1, 13);
-      vi.setSystemTime(date);
 
-      const storeStatus = isStoreOpen(STORE);
-
-      expect(storeStatus.open).toBe(true);
-    });
-    it("Store should be closed", () => {
-      const date = new Date(2024, 1, 1, 6);
-      vi.setSystemTime(date);
-
-      const storeStatus = isStoreOpen(STORE);
-
-      expect(storeStatus.open).toBe(false);
-      expect(storeStatus.nextOpening).toBe("tomorrow at 09:00")
-    });
+    expect(component.html()).toMatchInlineSnapshot(`"<p><span class="text-red-500 font-bold">Closed</span>. Opens tomorrow at 09:00</p>"`)
   });
 });
