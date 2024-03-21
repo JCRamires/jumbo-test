@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import jumboStores from "../server/api/jumbo-store-data.json";
-import { filterStores, paginateArray } from "./apiUtils";
+import jumboStores from "../../server/api/jumbo-store-data.json";
+import { filterStores, paginateArray } from "../apiUtils";
 import type { Store } from "~/types/stores";
 
 describe("apiUtils", () => {
