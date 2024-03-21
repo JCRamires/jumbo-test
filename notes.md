@@ -7,6 +7,11 @@ These are some notes with questions or remarks that I had while doing the test
 - I had some trouble turning off dark mode even after setting preference to `'light'`, to not waste much time on this I decided on adding `definePageMeta` forcing each page to be in light mode.
 - To save some time used the same json with all the stores for the testing, normally I would create some fake data so that it would be easier to test
 
+## Testing
+
+- I tried to create some component tests using vitest, but it seems I ran into some bug (configuration error?). Heres a [link to a thread about the bug](https://github.com/nuxt-modules/color-mode/issues/228#issuecomment-2011067733)
+- [this branch](https://github.com/JCRamires/jumbo-test/tree/component-testing/components/__tests__) has a couple of tests I created, it seems like the run correctly but they still throw the error above.
+
 ## Github actions
 
 - The deployment is on vercel and it has zero configuration so theres no need to create anything, but I created an action that runs the tests when a new pull request is created.
